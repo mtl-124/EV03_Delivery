@@ -1,0 +1,262 @@
+:root {
+    --borde: #d5d9e0;
+    --fondo: #f4f6f8;
+    --principal: #1f4e79;
+    --principal-claro: #2f6ea8;
+    --texto: #22272e;
+    --ok: #1e7d3c;
+    --error: #b42318;
+    --pendiente: #8a6d1d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: var(--principal);
+    color: #ffffff;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.subtitulo {
+    margin: 4px 0 0;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.estado-servicios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.estado {
+    padding: 6px 10px;
+    border-radius: 14px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.estado.disponible {
+    background: var(--ok);
+}
+
+.estado.no-disponible {
+    background: var(--error);
+}
+
+.estado.pendiente {
+    background: var(--pendiente);
+}
+
+.estado-servicios a {
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 12px 24px 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--borde);
+}
+
+.tab {
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background: transparent;
+    color: var(--texto);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tab.activo {
+    background: var(--fondo);
+    border-color: var(--borde);
+    border-radius: 6px 6px 0 0;
+    font-weight: 600;
+}
+
+main {
+    padding: 20px 24px;
+}
+
+.panel {
+    display: none;
+}
+
+.panel.activo {
+    display: block;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 19px;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+input,
+select {
+    padding: 8px 9px;
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.acciones-formulario {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    background: var(--principal-claro);
+    color: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--principal);
+}
+
+button.secundario {
+    background: #6b7280;
+}
+
+button.peligro {
+    background: var(--error);
+}
+
+button:disabled {
+    background: #9ca3af;
+    cursor: default;
+}
+
+table {
+    width: 100%;
+    margin-top: 16px;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: 9px 10px;
+    border: 1px solid var(--borde);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: #e9edf2;
+}
+
+td button {
+    margin-right: 5px;
+}
+
+.mensaje {
+    min-height: 18px;
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--principal);
+}
+
+.mensaje.error {
+    color: var(--error);
+}
+
+.busqueda {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-top: 18px;
+}
+
+.resultado {
+    min-height: 20px;
+    max-height: 280px;
+    overflow: auto;
+    margin-top: 12px;
+    padding: 12px;
+    background: #101820;
+    color: #d8e6f2;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+
+.botones-error {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.panel-log {
+    padding: 0 24px 24px;
+}
+
+.registro {
+    max-height: 260px;
+    overflow: auto;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.registro-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--borde);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    word-break: break-word;
+}
+
+.registro-item:last-child {
+    border-bottom: none;
+}

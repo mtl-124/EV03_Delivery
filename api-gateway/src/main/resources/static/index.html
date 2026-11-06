@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Delivery - Laboratorio 12</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Sistema de Delivery</h1>
+            <p class="subtitulo">Laboratorio 12 - Clientes, Repartidores y Entregas</p>
+        </div>
+        <div class="estado-servicios">
+            <span id="estado-clientes" class="estado pendiente">Clientes: verificando</span>
+            <span id="estado-repartidores" class="estado pendiente">Repartidores: verificando</span>
+            <span id="estado-entregas" class="estado pendiente">Entregas: verificando</span>
+            <a href="http://localhost:8761" target="_blank" rel="noopener">Panel de Eureka</a>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab activo" data-tab="clientes">Clientes</button>
+        <button class="tab" data-tab="repartidores">Repartidores</button>
+        <button class="tab" data-tab="entregas">Entregas</button>
+        <button class="tab" data-tab="errores">Casos de error</button>
+    </nav>
+
+    <main>
+        <section id="tab-clientes" class="panel activo">
+            <h2>Clientes</h2>
+            <form id="form-cliente" class="formulario">
+                <input type="hidden" id="cliente-id">
+                <label>Nombre
+                    <input id="cliente-nombre" required>
+                </label>
+                <label>Apellido
+                    <input id="cliente-apellido" required>
+                </label>
+                <label>Email
+                    <input id="cliente-email" type="email" required>
+                </label>
+                <label>Teléfono
+                    <input id="cliente-telefono" pattern="\d{7,15}" required>
+                </label>
+                <label>Dirección
+                    <input id="cliente-direccion" required>
+                </label>
+                <div class="acciones-formulario">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="cliente-limpiar" class="secundario">Limpiar</button>
+                </div>
+            </form>
+            <p id="mensaje-clientes" class="mensaje"></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-clientes"></tbody>
+            </table>
+        </section>
+
+        <section id="tab-repartidores" class="panel">
+            <h2>Repartidores</h2>
+            <form id="form-repartidor" class="formulario">
+                <input type="hidden" id="repartidor-id">
+                <label>Nombre
+                    <input id="repartidor-nombre" required>
+                </label>
+                <label>Apellido
+                    <input id="repartidor-apellido" required>
+                </label>
+                <label>Teléfono
+                    <input id="repartidor-telefono" required>
+                </label>
+                <label>Vehículo
+                    <select id="repartidor-vehiculo" required>
+                        <option value="MOTO">MOTO</option>
+                        <option value="BICICLETA">BICICLETA</option>
+                        <option value="AUTO">AUTO</option>
+                    </select>
+                </label>
+                <label>Activo
+                    <select id="repartidor-activo">
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                </label>
+                <div class="acciones-formulario">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="repartidor-limpiar" class="secundario">Limpiar</button>
+                </div>
+            </form>
+            <p id="mensaje-repartidores" class="mensaje"></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono</th>
+                        <th>Vehículo</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-repartidores"></tbody>
+            </table>
+        </section>
+
+        <section id="tab-entregas" class="panel">
+            <h2>Entregas</h2>
+            <form id="form-entrega" class="formulario">
+                <label>Cliente
+                    <select id="entrega-cliente" required></select>
+                </label>
+                <label>Repartidor
+                    <select id="entrega-repartidor" required></select>
+                </label>
+                <label>Dirección
+                    <input id="entrega-direccion" required>
+                </label>
+                <label>Costo
+                    <input id="entrega-costo" type="number" step="0.01" min="0" required>
+                </label>
+                <div class="acciones-formulario">
+                    <button type="submit">Registrar entrega</button>
+                </div>
+            </form>
+            <p id="mensaje-entregas" class="mensaje"></p>
+            <div class="busqueda">
+                <label>Buscar por ID
+                    <input id="busqueda-entrega" type="number" min="1">
+                </label>
+                <button type="button" id="buscar-entrega">Buscar</button>
+            </div>
+            <pre id="resultado-busqueda" class="resultado"></pre>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ID Cliente</th>
+                        <th>ID Repartidor</th>
+                        <th>Dirección</th>
+                        <th>Fecha</th>
+                        <th>Costo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-entregas"></tbody>
+            </table>
+        </section>
+
+        <section id="tab-errores" class="panel">
+            <h2>Casos de error</h2>
+            <div class="botones-error">
+                <button type="button" data-caso="costo_negativo">Costo negativo</button>
+                <button type="button" data-caso="direccion_vacia">Dirección vacía</button>
+                <button type="button" data-caso="entrega_inexistente">Entrega inexistente</button>
+                <button type="button" data-caso="cliente_inexistente">Cliente inexistente</button>
+                <button type="button" data-caso="repartidor_inexistente">Repartidor inexistente</button>
+                <button type="button" data-caso="transicion_invalida">Transición inválida</button>
+                <button type="button" data-caso="estado_invalido">JSON de estado inválido</button>
+            </div>
+            <pre id="caso-salida" class="resultado"></pre>
+        </section>
+    </main>
+
+    <section class="panel-log">
+        <h2>Registro de peticiones</h2>
+        <div id="registro" class="registro"></div>
+    </section>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
