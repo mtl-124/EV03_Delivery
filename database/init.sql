@@ -1,3 +1,4 @@
+
 CREATE DATABASE IF NOT EXISTS bd_cliente CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS bd_repartidor CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS bd_entrega CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
