@@ -1,8 +1,5 @@
 server:
   port: 8083
-  error:
-    include-message: always
-    include-stacktrace: always
 
 spring:
   application:
@@ -44,6 +41,11 @@ eureka:
 logging:
   level:
     com.tecsup: DEBUG
+
+server:
+  error:
+    include-message: always
+    include-stacktrace: always
 
 ---
 spring:
